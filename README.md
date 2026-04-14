@@ -33,9 +33,9 @@ that computes industry-standard SaaS KPIs:
 2. **Grant privileges** when prompted:
    - CREATE DATABASE — the app creates SAAS_METRICS_DB for pipeline layers
    - CREATE WAREHOUSE — the app creates analytics and Cortex AI warehouses
-   - IMPORTED PRIVILEGES ON SNOWFLAKE DB — enables Cortex AI features
-3. **Bind references** — point the app to your source tables and a warehouse.
-4. **Open the Streamlit app** — select your data source and click **Build SaaS Metrics**.
+   - Cortex AI access is granted automatically via the `cortex_user` database role
+3. **Bind references** — the app will prompt you to grant access to your source tables through the standard Snowsight permissions flow.
+4. **Open the Streamlit app** — your granted tables are automatically detected. Click **Build SaaS Metrics**.
 
 ## AI Features (Optional)
 
@@ -44,7 +44,8 @@ The following features require Cortex AI access in your account:
 - **Churn Risk Analysis** — uses SNOWFLAKE.CORTEX.COMPLETE (llama3.1-70b)
 - **Natural Language Data Chat** — uses SNOWFLAKE.CORTEX.COMPLETE (llama3.1-70b)
 
-These features require the IMPORTED PRIVILEGES ON SNOWFLAKE DB privilege to be granted to the app.
+These features use the `cortex_user` Snowflake database role, which is automatically
+granted to the app via the manifest.
 If Cortex is not available in your region, the dashboard tabs still work — only the AI tab is affected.
 
 ## Data Quality
